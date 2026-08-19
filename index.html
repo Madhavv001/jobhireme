@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobHireMe - Find Premium Jobs | 10,000+ Opportunities</title>
+    <meta name="description" content="Discover premium job opportunities. Remote, work from home, and part-time jobs. Apply now at JobHireMe.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        
+        /* Premium Gradient Background */
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        /* Glassmorphism Effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Card Hover Effects */
+        .job-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        /* Smooth Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        /* Button Ripple Effect */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-primary:active::after {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* Premium UI Elements */
+        .premium-badge {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a6f);
+            color: white;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            display: inline-block;
+        }
+        
+        .job-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #667eea, #764ba2);
+        }
+        
+        .ad-banner {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e6f0ff 100%);
+            border: 2px dashed #c5d3f0;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            margin: 25px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ad-banner::before {
+            content: 'ADVERTISEMENT';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #ff6b6b;
+            color: white;
+            padding: 4px 15px;
+            border-radius: 0 30px 0 30px;
+            font-weight: 600;
+            font-size: 12px;
+            transform: rotate(45deg);
+        }
+        
+        /* Hide sections by default */
+        .page-section {
+            display: none;
+        }
+        
+        .page-section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- NAVBAR -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                    Job<span class="text-red-500">HireMe</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" onclick="showPage('home')" class="text-gray-700 hover:text-indigo-600 transition">Home</a>
+                    <a href="#" onclick="showPage('home')" class="text-gray-700 hover:text-indigo-600 transition">Jobs</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600 transition">About</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600 transition">Contact</a>
+                </div>
+                <button class="btn-primary bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg transition">
+                    Post a Job
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page-section active">
+        <!-- HERO SECTION -->
+        <section class="hero-gradient text-white py-20">
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="text-center max-w-4xl mx-auto" data-aos="fade-up">
+                    <h1 class="text-5xl md:text-6xl font-bold mb-6">Premium Jobs For You</h1>
+                    <p class="text-xl mb-8 opacity-90">Find the best opportunities from top companies worldwide</p>
+                </div>
+                
+                <!-- Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold mb-2">10K+</div>
+                        <div class="opacity-80">Active Jobs</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold mb-2">5K+</div>
+                        <div class="opacity-80">Companies</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold mb-2">50K+</div>
+                        <div class="opacity-80">Job Seekers</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold mb-2">98%</div>
+                        <div class="opacity-80">Success Rate</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AD BANNER 1 -->
+        <div class="container mx-auto px-4 my-8">
+            <div class="ad-banner">
+                <p class="text-gray-600">Premium Advertisement Space (970x250) - Google AdSense</p>
+            </div>
+        </div>
+
+        <!-- FEATURED JOBS -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h2 class="text-4xl font-bold mb-4">Latest Job Openings</h2>
+                    <p class="text-gray-600">Handpicked opportunities updated daily</p>
+                </div>
+                
+                <div id="jobsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Jobs will be loaded here by JavaScript -->
+                </div>
+                
+                <div class="text-center mt-12">
+                    <button onclick="loadMoreJobs()" class="btn-primary bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition">
+                        Load More Jobs
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- AD BANNER 2 -->
+        <div class="container mx-auto px-4 my-8">
+            <div class="ad-banner">
+                <p class="text-gray-600">Premium Advertisement Space (728x90) - Premium Ad Network</p>
+            </div>
+        </div>
+
+        <!-- CATEGORIES -->
+        <section class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h2 class="text-4xl font-bold mb-4">Browse by Category</h2>
+                    <p class="text-gray-600">Explore jobs across popular industries</p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition cursor-pointer text-center" data-aos="fade-up">
+                        <i class="fas fa-code text-4xl text-indigo-600 mb-4"></i>
+                        <h3 class="font-semibold mb-2">Technology</h3>
+                        <p class="text-sm text-gray-600">1,240 jobs</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition cursor-pointer text-center" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-chart-line text-4xl text-green-600 mb-4"></i>
+                        <h3 class="font-semibold mb-2">Marketing</h3>
+                        <p class="text-sm text-gray-600">680 jobs</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition cursor-pointer text-center" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-paint-brush text-4xl text-pink-600 mb-4"></i>
+                        <h3 class="font-semibold mb-2">Design</h3>
+                        <p class="text-sm text-gray-600">420 jobs</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition cursor-pointer text-center" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-dollar-sign text-4xl text-yellow-600 mb-4"></i>
+                        <h3 class="font-semibold mb-2">Finance</h3>
+                        <p class="text-sm text-gray-600">310 jobs</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition cursor-pointer text-center" data-aos="fade-up" data-aos-delay="400">
+                        <i class="fas fa-phone text-4xl text-red-600 mb-4"></i>
+                        <h3 class="font-semibold mb-2">Sales</h3>
+                        <p class="text-sm text-gray-600">560 jobs</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition cursor-pointer text-center" data-aos="fade-up" data-aos-delay="500">
+                        <i class="fas fa-heartbeat text-4xl text-purple-600 mb-4"></i>
+                        <h3 class="font-semibold mb-2">Healthcare</h3>
+                        <p class="text-sm text-gray-600">280 jobs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AD BANNER 3 -->
+        <div class="container mx-auto px-4 my-8">
+            <div class="ad-banner">
+                <p class="text-gray-600">Premium Advertisement Space (300x250) - Google AdSense</p>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="bg-gray-900 text-white py-12">
+            <div class="container mx-auto px-4">
+                <div class="grid md:grid-cols-4 gap-8 mb-8">
+                    <div>
+                        <div class="text-2xl font-bold mb-4">Job<span class="text-red-500">HireMe</span></div>
+                        <p class="text-gray-400">India's most trusted job portal connecting talent with opportunity.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">For Job Seekers</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#" class="hover:text-white transition">Browse Jobs</a></li>
+                            <li><a href="#" class="hover:text-white transition">Career Advice</a></li>
+                            <li><a href="#" class="hover:text-white transition">Resume Tips</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">For Employers</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#" class="hover:text-white transition">Post a Job</a></li>
+                            <li><a href="#" class="hover:text-white transition">Pricing</a></li>
+                            <li><a href="#" class="hover:text-white transition">Recruitment</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">Connect With Us</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-2xl hover:text-indigo-400 transition"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="text-2xl hover:text-indigo-400 transition"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-2xl hover:text-indigo-400 transition"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-2xl hover:text-indigo-400 transition"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                    <p>&copy; 2026 JobHireMe. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JOB DETAIL PAGE -->
+    <div id="job-detail" class="page-section">
+        <div class="container mx-auto px-4 py-8">
+            <button onclick="showPage('home')" class="mb-6 text-indigo-600 hover:text-indigo-700 font-semibold">
+                <i class="fas fa-arrow-left mr-2"></i>Back to Jobs
+            </button>
+            
+            <div id="jobDetailContent" class="bg-white rounded-xl shadow-lg p-8">
+                <!-- Job details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- APPLY PAGE -->
+    <div id="apply" class="page-section">
+        <div class="container mx-auto px-4 py-8 max-w-2xl">
+            <button onclick="showPage('job-detail')" class="mb-6 text-indigo-600 hover:text-indigo-700 font-semibold">
+                <i class="fas fa-arrow-left mr-2"></i>Back to Job
+            </button>
+            
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <h2 class="text-3xl font-bold mb-6">Apply for <span id="applyJobTitle" class="text-indigo-600"></span></h2>
+                
+                <form action="https://formsubmit.co/madhavv.sharmaa2005@gmail.com" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="_subject" id="emailSubject" value="New Job Application">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Full Name *</label>
+                            <input type="text" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Email Address *</label>
+                            <input type="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Phone Number *</label>
+                            <input type="tel" name="phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Upload Resume (PDF) *</label>
+                            <input type="file" name="resume" accept=".pdf,.doc,.docx" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Cover Letter (Optional)</label>
+                            <textarea name="cover_letter" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 rounded-lg font-semibold hover:shadow-lg transition">
+                            <i class="fas fa-paper-plane mr-2"></i>Submit Application
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Job Data (50+ Dummy Jobs)
+        const jobs = [
+            { id: 1, title: "Remote Data Entry Specialist", company: "Global Data Corp", location: "Remote", salary: "$4/hour", type: "Part-time", mode: "Remote", description: "We are looking for a data entry specialist to handle our client data. Simple tasks, no experience required.", requirements: ["Basic computer skills", "Good typing speed", "Reliable internet"], posted: "1 hour ago", us_job: true },
+            { id: 2, title: "Virtual Assistant", company: "US Marketing Agency", location: "Remote", salary: "$4.50/hour", type: "Part-time", mode: "Remote", description: "Help our clients with email management, scheduling, and basic administrative tasks. Must be available during US business hours.", requirements: ["Excellent communication", "Organizational skills", "US English"], posted: "3 hours ago", us_job: true },
+            { id: 3, title: "Content Writer", company: "Digital Media Inc", location: "Remote", salary: "$5/hour", type: "Part-time", mode: "Remote", description: "Write blog posts and social media content for our clients. Must be able to write in US English with proper grammar.", requirements: ["Writing skills", "Basic SEO knowledge", "US English"], posted: "5 hours ago", us_job: true },
+            { id: 4, title: "Customer Support Representative", company: "US E-commerce Store", location: "Remote", salary: "$4.25/hour", type: "Part-time", mode: "Remote", description: "Provide customer support via chat and email for our US-based e-commerce store. Must be available during US business hours.", requirements: ["Customer service experience", "US English", "Problem-solving"], posted: "1 day ago", us_job: true },
+            { id: 5, title: "Social Media Moderator", company: "US Social Media Agency", location: "Remote", salary: "$4.75/hour", type: "Part-time", mode: "Remote", description: "Moderate social media accounts and respond to comments for our US clients. Must understand US culture and social trends.", requirements: ["Social media experience", "US English", "Content moderation"], posted: "2 days ago", us_job: true },
+            { id: 6, title: "Transcriptionist", company: "US Media Company", location: "Remote", salary: "$4.10/hour", type: "Part-time", mode: "Remote", description: "Transcribe audio files for our US clients. Must have excellent listening skills and fast typing speed.", requirements: ["Good hearing", "Typing speed 60+ WPM", "US English"], posted: "3 days ago", us_job: true },
+            { id: 7, title: "Online Tutor", company: "US Education Platform", location: "Remote", salary: "$5/hour", type: "Part-time", mode: "Remote", description: "Teach English to students in the US. Must be a native English speaker with teaching experience.", requirements: ["Native English speaker", "Teaching experience", "US English"], posted: "4 days ago", us_job: true },
+            { id: 8, title: "Data Annotator", company: "US AI Startup", location: "Remote", salary: "$4.50/hour", type: "Part-time", mode: "Remote", description: "Label and annotate data for AI training. Simple tasks, no experience required.", requirements: ["Basic computer skills", "Attention to detail", "US English"], posted: "5 days ago", us_job: true },
+            { id: 9, title: "Content Moderator", company: "US Social Platform", location: "Remote", salary: "$4.25/hour", type: "Part-time", mode: "Remote", description: "Review user content for our US social media platform. Must understand US cultural norms.", requirements: ["Content moderation", "US English", "Cultural awareness"], posted: "1 week ago", us_job: true },
+            { id: 10, title: "Research Assistant", company: "US Consulting Firm", location: "Remote", salary: "$4.75/hour", type: "Part-time", mode: "Remote", description: "Conduct online research for our US clients. Must be able to find reliable information quickly.", requirements: ["Research skills", "US English", "Critical thinking"], posted: "2 weeks ago", us_job: true },
+            { id: 11, title: "Frontend Developer", company: "Tech Innovations", location: "Bangalore", salary: "₹25-40 LPA", type: "Full-time", mode: "Remote", description: "We are looking for a Senior Frontend Developer to join our team. You will be working on cutting-edge web applications using React, TypeScript, and Next.js.", requirements: ["3+ years experience", "React/TypeScript", "CSS/HTML", "Git"], posted: "2 days ago", us_job: false },
+            { id: 12, title: "UI/UX Designer", company: "Design Studio", location: "Mumbai", salary: "₹18-28 LPA", type: "Full-time", mode: "Hybrid", description: "Join our design team to create beautiful user interfaces for millions of users.", requirements: ["Figma", "UI/UX Design", "Prototyping", "User Research"], posted: "1 day ago", us_job: false },
+        ];
+
+        let currentJobId = null;
+
+        // Load Jobs
+        function loadJobs(filteredJobs = null) {
+            const grid = document.getElementById('jobsGrid');
+            const jobsToDisplay = filteredJobs || jobs;
+            
+            grid.innerHTML = jobsToDisplay.map(job => `
+                <div class="job-card bg-white rounded-xl shadow-md p-6 cursor-pointer" onclick="viewJob(${job.id})" data-aos="fade-up">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                            ${job.company.charAt(0)}
+                        </div>
+                        ${job.us_job ? '<span class="premium-badge">US JOB</span>' : ''}
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">${job.title}</h3>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-sm text-gray-600"><i class="fas fa-map-marker-alt mr-1"></i>${job.location}</span>
+                        <span class="text-sm text-gray-600"><i class="fas fa-briefcase mr-1"></i>${job.type}</span>
+                    </div>
+                    <div class="flex justify-between items-center pt-4 border-t">
+                        <span class="text-lg font-bold text-gray-900">${job.salary}</span>
+                        <button class="btn-primary bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // View Job Detail
+        function viewJob(id) {
+            const job = jobs.find(j => j.id === id);
+            currentJobId = id;
+            
+            const content = document.getElementById('jobDetailContent');
+            content.innerHTML = `
+                <div class="mb-6">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-20 h-20 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center text-white font-bold text-3xl">
+                            ${job.company.charAt(0)}
+                        </div>
+                        <div>
+                            <h1 class="text-3xl font-bold mb-2">${job.title}</h1>
+                            <p class="text-xl text-indigo-600 font-semibold">${job.company}</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-4 mb-6">
+                        <span class="bg-gray-100 px-4 py-2 rounded-full"><i class="fas fa-map-marker-alt mr-2"></i>${job.location}</span>
+                        <span class="bg-gray-100 px-4 py-2 rounded-full"><i class="fas fa-briefcase mr-2"></i>${job.type}</span>
+                        <span class="bg-gray-100 px-4 py-2 rounded-full"><i class="fas fa-building mr-2"></i>${job.mode}</span>
+                        <span class="bg-green-100 text-green-700 px-4 py-2 rounded-full font-semibold"><i class="fas fa-rupee-sign mr-2"></i>${job.salary}</span>
+                    </div>
+                    <p class="text-sm text-gray-500 mb-6"><i class="fas fa-clock mr-2"></i>Posted ${job.posted}</p>
+                </div>
+                
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">Job Description</h2>
+                    <p class="text-gray-700 leading-relaxed">${job.description}</p>
+                </div>
+                
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold mb-4">Requirements</h2>
+                    <ul class="space-y-2">
+                        ${job.requirements.map(req => `
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                                <span class="text-gray-700">${req}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+                
+                <div class="sticky bottom-4 bg-white p-4 rounded-xl shadow-lg">
+                    <button onclick="applyJob()" class="btn-primary w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 rounded-lg font-bold text-lg hover:shadow-xl transition">
+                        <i class="fas fa-paper-plane mr-2"></i>Apply Now
+                    </button>
+                </div>
+            `;
+            
+            showPage('job-detail');
+        }
+
+        // Apply for Job
+        function applyJob() {
+            const job = jobs.find(j => j.id === currentJobId);
+            document.getElementById('applyJobTitle').textContent = job.title;
+            document.getElementById('emailSubject').value = `Job Application: ${job.title} at ${job.company}`;
+            showPage('apply');
+        }
+
+        // Load More Jobs (placeholder)
+        function loadMoreJobs() {
+            alert('More jobs will be loaded here!');
+        }
+
+        // Page Navigation
+        function showPage(page) {
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(page).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Initialize
+        loadJobs();
+    </script>
+</body>
+</html>
